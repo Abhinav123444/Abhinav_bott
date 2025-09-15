@@ -71,6 +71,7 @@ def add_username_column():
 # Initialize and upgrade the database
 initialize_db()
 add_username_column()
+  c.execute(ALTER TABLE users ADD COLUMN abhinav)
 
 # Helper functions
 def add_log(message):
