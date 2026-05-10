@@ -11,7 +11,7 @@ from requests.exceptions import RequestException
 
 # Replace with your actual bot token and admin IDs
 API_TOKEN = "8762332145:AAHKiZKn2IBsAyilO993Lv3NiflzluS0Uzc"
-ADMIN_IDS = {2055319075,6887990538}  # Example: set of admin IDs
+ADMIN_IDS = {6887990538}  # Example: set of admin IDs
 
 bot = telebot.TeleBot(API_TOKEN)
 
@@ -132,7 +132,7 @@ def attack_thread(ip, port, attack_time, attack_id):
                    f'IP: {ip}\n'
                    f'Port: {port}\n'
                    f'Time: {end_time - start_time:.2f} seconds\n'
-                   f'Watermark: @Abhinavmishra81355 Terms of service use and legal considerations.')
+                   f'Watermark: @Abhinavserverhacks Terms of service use and legal considerations.')
 
         # Send message to all admins
         for admin_id in ADMIN_IDS:
