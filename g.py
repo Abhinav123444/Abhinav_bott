@@ -132,7 +132,7 @@ def attack_thread(ip, port, attack_time, attack_id):
                    f'IP: {ip}\n'
                    f'Port: {port}\n'
                    f'Time: {end_time - start_time:.2f} seconds\n'
-                   f'Watermark: @Abhinavserverhacks Terms of service use and legal considerations.')
+                   f'Watermark: @https://t.me/Abhinavmishra81355 Terms of service use and legal considerations.')
 
         # Send message to all admins
         for admin_id in ADMIN_IDS:
