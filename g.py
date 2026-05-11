@@ -119,7 +119,7 @@ def send_telegram_message(chat_id, text):
 def attack_thread(ip, port, attack_time, attack_id):
     try:
         start_time = time.time()
-        command = f"./soul {ip} {port} {attack_time} 100"
+        command = f"./soul {ip} {port} {attack_time} 90"
         process = subprocess.Popen(command, shell=True)
         time.sleep(attack_time)  # Wait for attack time
 
